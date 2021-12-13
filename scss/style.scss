@@ -1,0 +1,15 @@
+@import 'general';
+@import 'elevatorInfo';
+@import 'input/input';
+@import 'data';
+@import 'queries';
+
+.footer {
+    position: absolute;
+    top: 400px;
+}
+
+.cabin {
+    padding-left: 23px;
+    padding-top: 25px;
+}

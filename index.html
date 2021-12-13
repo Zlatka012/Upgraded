@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="app">
+        <div class="elev">
+            <p class="elevinfo" id="elevstate"></p>
+            <div class="currstate">
+                <div id="currfloor"></div>
+                <div id="direction"></div>
+            </div>
+
+            <div class="elevdoors">
+                <div id="numbers" class="hidden">
+                    <table class="cabin">
+                        <tr>
+                            <td class="select">1</td>
+                            <td class="select">2</td>
+                            <td class="select">3</td>
+                            <td class="select">4</td>
+                        </tr>
+                        <tr>
+                            <td class="select">5</td>
+                            <td class="select">6</td>
+                            <td class="select">7</td>
+                            <td class="select">8</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="input">
+            <div class="table">
+                <p>click button of your floor</p>
+                <div class="flex">
+                    <table>
+                        <tr>
+                            <td class="floorbtn">1</td>
+                            <td class="floorbtn">2</td>
+                            <td class="floorbtn">3</td>
+                            <td class="floorbtn">4</td>
+                        </tr>
+                        <tr>
+                            <td class="floorbtn">5</td>
+                            <td class="floorbtn">6</td>
+                            <td class="floorbtn">7</td>
+                            <td class="floorbtn">8</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <h3>Author: Zlatica Svocáková</h3>
+        <h4>Updated: 19/11/2021 15:30</h4>
+
+        <div class="notes">
+            <h5>Breakdown of the elevator mechanism:</h5>
+            <p>
+                Elevator can be operated from the inside by the 
+                control panel in the cabin or by the buttons located 
+                on every floor from the outside of the elevator. (Note 
+                that ground floor has number 1.)
+            </p>
+            <p>
+                When the elevator is waiting for passengers to 
+                enter the cabin or is moving towards/with currect user, 
+                no other person can call it at the same time. That is 
+                indicated by lights on every floor - they can't push the 
+                "call" button while they're lighten up. (Surely they can, 
+                but nothing will happen.)
+            </p>
+            <p>
+                If the elevator stands still, anyone from outside can operate it. 
+                If it's on the same floor then the door will open. If not, elevator 
+                will come directly to caller and open door automatically. Then, the 
+                passenger has 3 seconds to enter desired floor. If no one enters the 
+                cabin and dial his choice, door will automatically close themselves and 
+                elevator will be ready to be called from any floor.
+            </p>
+
+            <h5>Usage instructions:</h5>
+            <p>
+                1. Click on the floor button you're calling from (- on the right side when using desktop, at the bottom while being on the phone). <br>
+                2. When elevator arrives at your floor and opens its door, select the desired destination in the inside of the cabin.<br>
+                3. When doors are opened, you can operate it from inside as many times as you want.<br>
+                4. When calling buttons aren't lit up, you can call it by using them.
+            </p>
+
+            <a href="https://github.com/Zlatka012/Elevator">GitHub Repository containg this program with more explicit description.</a>
+
+            <h5>Notes on styling my code:</h5>
+            <p>
+                For any potencial codeReader: <br>
+                1. Please don't mind tabulated functions in purpose to esthetically 
+                enhance source code. <br>
+                2. Every comment under the function's signature is describing overall 
+                behaviour of the function. <br>
+            </p>
+            <h5>Notes on visual design:</h5>
+            <p>
+                This sketch has only one purpose - to show functionality of this 
+                implemented elevator algorithm. It hasn't been properly designed to be 
+                visually appealing, because, I'm not gonna lie, I have no ability to 
+                do that. Art isn't my passion, I'm here for technical reasoning.
+            </p>
+        </div>
+    </div>
+    
+    <script src="app/elevate.js"></script> 
+</body>
+</html>

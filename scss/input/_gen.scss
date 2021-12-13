@@ -1,0 +1,32 @@
+.input {
+    background-color: #fff;
+    position: absolute;
+    top: 0;
+    left: 250px;
+    width: 195;
+    height: 130px;
+}
+
+.table {
+    width: 185px;
+    height: 130px;
+    position: relative;
+    background-color: rgba(255, 192, 203, 0.747);
+    padding-left: 25px;
+    padding-top: 10px;
+}
+
+.flex {
+    display: flex;
+    flex-direction: row;
+}
+
+table {
+    border-spacing: 5px;
+    padding-top: 5px;
+}
+
+td {
+    border: 1px solid black;
+    padding: 10px;
+}
