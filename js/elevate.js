@@ -40,11 +40,10 @@ if (!Array.prototype['forEach']) {
 
 var getID = function getID(x) {
   return document.getElementById(x);
-};
-
-function arrayFromClass(x) {
+},
+    arrayFromClass = function arrayFromClass(x) {
   return Array.prototype.slice.call(document.getElementsByClassName(x));
-}
+};
 
 function CL(elem, x, y) {
   // ClassList operations.
@@ -63,9 +62,9 @@ function CL(elem, x, y) {
 } // Visible output data.
 
 
-var elevState = getID("elevstate");
-var showFloor = getID("currfloor");
-var elevDir = getID("direction");
+var elevState = getID("elevstate"),
+    showFloor = getID("currfloor"),
+    elevDir = getID("direction");
 
 function displayState() {
   // Updating state info seen by user.
@@ -87,10 +86,10 @@ function display(x) {
 } // Actual info.
 
 
-var state = "still";
-var currFloor = 5;
-var direction = "";
-var where;
+var state = "still",
+    currFloor = 5,
+    direction = "",
+    where;
 
 function updateInfo() {
   displayState();

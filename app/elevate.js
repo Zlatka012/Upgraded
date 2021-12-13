@@ -25,11 +25,8 @@
             }
         // ------------------------------
 
-        let getID = (x) => document.getElementById(x);
-
-        function arrayFromClass(x) {
-            return Array.prototype.slice.call(document.getElementsByClassName(x));
-        }
+        let getID = (x) => document.getElementById(x),
+            arrayFromClass = (x) => Array.prototype.slice.call(document.getElementsByClassName(x));
 
         function CL(elem, x, y) {
             // ClassList operations.
@@ -46,9 +43,9 @@
         }
 
 // Visible output data.
-let elevState = getID("elevstate");
-let showFloor = getID("currfloor");
-let elevDir = getID("direction");
+let elevState = getID("elevstate"),
+    showFloor = getID("currfloor"),
+    elevDir = getID("direction");
 
         function displayState() {
             // Updating state info seen by user.
@@ -70,10 +67,10 @@ let elevDir = getID("direction");
         }
 
 // Actual info.
-let state = "still";
-let currFloor = 5;
-let direction = "";
-let where;
+let state = "still",
+    currFloor = 5,
+    direction = "",
+    where;
 
         function updateInfo() {
             displayState();
