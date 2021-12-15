@@ -26,7 +26,8 @@
         // ------------------------------
 
         let getID = (x) => document.getElementById(x),
-            arrayFromClass = (x) => Array.prototype.slice.call(document.getElementsByClassName(x));
+            arrayFromClass = (x) => Array.prototype.slice.call
+                                    (document.getElementsByClassName(x));
 
         function CL(elem, x, y) {
             // ClassList operations.
@@ -81,6 +82,9 @@ let state = "still",
 // Show real-time output for user.
 updateInfo();
 
+let myTimeout = [];
+var stops = [];
+
 
 // Clickable functionality of buttons.
 let floorBtns = arrayFromClass("floorbtn");
@@ -114,7 +118,7 @@ floorBtns.forEach(function(btn) {
         }
 
         function setIt(x) {
-            // Highlight floor(s) accordingly.
+            // "Unconditionally" setting location.
 
             if ( (!CL(x,"has","chosen")) || ( !CL(x,"has","light"))) {
                 // Select the caller's position after checking the conditions.
@@ -172,25 +176,29 @@ floorBtns.forEach(function(btn) {
                 stepByStep(differ, "+");
             } else {
                 differ = currFloor - where;
-                stepByStep(differ);
+                stepByStep(differ, "-");
             }
         }
+
+        let bla = 4;
 
         function stepByStep(x, y) {
             // Move through floors towards destination and stop.
             for (let i = 1; i <= x; i++) {
 
-                setTimeout(function() {
-                    if (y == "+") {
-                        currFloor++;
-                    } else {
-                        currFloor--;
-                    }
+                myTimeout.push(
+                    setTimeout(() => {
+                        if (y == "+") {
+                            currFloor++;
+                        } else if (y == "-") {
+                            currFloor--;
+                        }
 
-                    // Real-time output.
-                    display("floor");
-                    updateInfo();
-                }, i*1300);
+                        // Real-time output.
+                        display("floor");
+                        updateInfo();
+                    }, i*1300)
+                );
             }
 
             setTimeout(function() {
@@ -210,17 +218,24 @@ let inside = getID("numbers")
         function openDoor() {
             // Show buttons in the inside.
             CL(inside, "del", "hidden");
-            where = null;
+            // Remove actual stop from order.
+            stops.shift();
+
+            if (stops.length < 1) {
+                where = null;
+            } else {
+                where = stops[0];
+            }
+            
             noneBtn();
 
             waitForUser();
         }
-
         function waitForUser() {
             // Wait 3 seconds to be sure if someone entered elevator.
             let now = showFloor.textContent;
             setTimeout(function() {
-                if ( (where == null) && ( showFloor.textContent == now) ) {
+                if ( (stops.length < 1) && ( showFloor.textContent == now) ) {
                     closeDoor();
                 }
             }, 3000);
@@ -228,11 +243,9 @@ let inside = getID("numbers")
 
         function closeDoor() {
             // Hide the cabin's inside.
-            CL(inside,"add","hidden");
+            hideInside();
             state = "still";
             updateInfo();
-
-            clearOrder();
         }
 
         function clearOrder() {
@@ -267,17 +280,26 @@ controls.forEach(function(btn) {
 
         function goToNext() {
             // Go where passanger told you to.
-            setDestination(this);
 
             if (where != currFloor) {
+                setDestination(this);
                 hideInside();
                 noneBtn();
                 findWay();
+            } else {
+                waitForUser();
             }
         }
 
+        let floorNum = x => parseInt(x.textContent, 10);
+
         function setDestination(x) {
             // Tell elevator where to go.
-            where = x.textContent;
-            where = parseInt(where, 10);
+
+            // Add order to an array of elevator's stops.
+            stops.push(parseInt(x.textContent, 10));
+            // Sort stops in descending order.
+            stops.sort( (a,b) => (b - a) );
+            // Next destination is the nearest floor.
+            where = stops[0];
         }
